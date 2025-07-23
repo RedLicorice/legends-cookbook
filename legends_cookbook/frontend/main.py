@@ -5,14 +5,14 @@ from ..config import settings
 from .components.layout import header_and_left_drawer
 
 from .pages import (
-    home, recipes#, bindings, languages, translations
+    home, recipe #, bindings, languages, translations
 )
 
 logger = logging.getLogger(__name__)
 
 PAGES = [
     {'label': 'Home', 'uri': '/', 'func': home.page, 'icon': 'home'},
-    {'label': 'Recipe', 'uri': '/recipe', 'func': recipes.page, 'icon': 'link'},
+    {'label': 'Recipe', 'uri': '/recipe', 'func': recipe.page, 'icon': 'link'},
     # {'label': 'Languages', 'uri': '/languages', 'func': languages.page, 'icon': 'language'},
     # {'label': 'Translations', 'uri': '/translations', 'func': translations.page, 'icon': 'translate'},
     # {'label': 'Lingue', 'uri': '/languages', 'func': languages.page, 'icon': 'language'},

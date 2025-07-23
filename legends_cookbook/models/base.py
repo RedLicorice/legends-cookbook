@@ -10,5 +10,5 @@ def init_tables_data(SessionLocal):
 
 def check_or_create_tables(engine):
     # Create the tables in the database
-    if not inspect(engine).has_table('bindings'):
+    if not inspect(engine).has_table('ingredients'):
         Base.metadata.create_all(bind=engine)

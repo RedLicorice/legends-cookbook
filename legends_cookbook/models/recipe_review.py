@@ -4,27 +4,25 @@ from sqlalchemy import Integer, String, DateTime, ForeignKey, UniqueConstraint
 from typing import Optional, List, TYPE_CHECKING
 if TYPE_CHECKING:
     from .user import User
-    from .recipe_ingredient import RecipeIngredient
-    from .recipe_review import RecipeReview
+    from .recipe import Recipe
 from .base import Base
 
 
-class Recipe(Base):
-    __tablename__ = 'recipes'
+class RecipeReview(Base):
+    __tablename__ = 'recipe_reviews'
     id = mapped_column(Integer, primary_key=True, index=True)
     
-    # Recipe Title
-    name = mapped_column(String, index=True)
+    # Recipe Reference
+    recipe_id: Mapped[int] = mapped_column(ForeignKey("recipes.id"))
+    recipe: Mapped["Recipe"] = relationship(back_populates="reviews")
 
-    # Recipe Author
+    # Comment Author
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    author: Mapped["User"] = relationship(back_populates="recipes")
+    author: Mapped["User"] = relationship(back_populates="reviews")
 
-    # Ingredients
-    ingredients: Mapped[List["RecipeIngredient"]] = relationship(back_populates="recipe")
-
-    # Reviews
-    reviews: Mapped[List["RecipeReview"]] = relationship(back_populates="recipe")
+    # Content
+    rating = mapped_column(Integer, nullable=False)
+    comment = mapped_column(String, nullable=True)
 
     # Common
     created = mapped_column(DateTime(timezone=True), server_default=func.now())

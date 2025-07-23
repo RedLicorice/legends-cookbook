@@ -4,6 +4,7 @@ from sqlalchemy import Integer, String, DateTime
 from typing import Optional, List, TYPE_CHECKING
 from .base import Base
 if TYPE_CHECKING:
+    from .recipe_review import RecipeReview
     from .recipe import Recipe
 
 class User(Base):
@@ -16,6 +17,9 @@ class User(Base):
     
     # User's recipes
     recipes: Mapped[List["Recipe"]] = relationship(back_populates="author")
+
+    # User's reviews
+    reviews: Mapped[List["RecipeReview"]] = relationship(back_populates="author")
 
     # Common
     created = mapped_column(DateTime(timezone=True), server_default=func.now())

@@ -1,6 +1,8 @@
 from nicegui import ui
 from typing import Callable
+
 from ...config import settings
+from .register_dialog import component as register_btn
 
 
 def header_and_left_drawer(page_func: Callable, pages: list[dict]):
@@ -19,7 +21,10 @@ def header_and_left_drawer(page_func: Callable, pages: list[dict]):
     with header: # background-color: #1976d2; color: white;
         ui.button(on_click=lambda: drawer.toggle(), icon='menu').style('width: 40px; height: 40px; padding: 0')# , color='white' # color: #ccc; 
         ui.label(settings.frontend.title).classes('text-h6 ml-2')
-        ui.element('div').classes('flex-grow')
+        ui.space()
+
+        register_btn()
+
         with ui.row().classes('items-center'):
             # ui.button('Dark', on_click=dark.enable)
             # ui.button('Light', on_click=dark.disable)

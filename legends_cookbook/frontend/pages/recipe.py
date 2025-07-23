@@ -3,8 +3,20 @@ import logging
 import hashlib
 
 columns = [
-    {'name': 'ingredient', 'label': 'Ingredient', 'field': 'ingredient', 'align': 'left', 'sortable': True},
-    {'name': 'pct', 'label': 'Percentage', 'field': 'pct', 'sortable': True},
+    {
+        'name': 'ingredient', 
+        'label': 'Ingredient', 
+        'field': 'ingredient', 
+        'align': 'left', 
+        'sortable': True
+    },
+    {
+        'name': 'pct', 
+        'label': 'Percentage', 
+        'field': 'pct',
+        ':format': 'value => value + "%"',
+        'sortable': True
+    },
 ]
 rows = [
     {'ingredient': 'THCa', 'pct': 75},
@@ -24,7 +36,22 @@ def hash_color(name):
 
 def page():
     with ui.card(align_items='center').tight().classes('flex flex-col p-2'):
-        ui.label('[Recipe Name]').classes('text-h4')
+        
+
+        with ui.row().classes('w-full items-center gap-2'):
+            ui.label('[Recipe Name]').classes('w-full text-h4')
+            
+            ui.label(text=f'Author: [RecipeAuthor]')
+            ui.space()
+            ui.rating(
+                value=3.5,
+                size='sm',
+                icon='star',
+                icon_selected='star',
+                icon_half='star_half',
+            )
+        
+        ui.separator()
 
         with ui.row():
             ui.table(columns=columns, rows=rows, row_key='name') \
