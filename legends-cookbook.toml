@@ -1,0 +1,26 @@
+[logging]
+level = "INFO"
+prefix = "./"
+
+[api]
+host = "127.0.0.1"
+port = 8088
+public_url = "http://127.0.0.1:8088"
+prefix_path = '/api/v1'
+
+[frontend]
+title = "The Legends' Cookbook"
+enable = true
+prefix_path = '/gui'
+storage_secret = '3VnIwL4yYreyayzHRMdALaGmiXzAkkkhaoyeE1J2yjpYaquu3qWsKIu6tlgPmHMl'
+
+[database]
+mode='sqlite'
+
+[database.sqlite]
+filename='locale.db'
+
+[database.locale]
+host='localhost'
+port=3306
+schema='srv1_locale'
