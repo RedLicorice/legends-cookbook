@@ -5,7 +5,7 @@ import hashlib
 import pytz
 
 
-def add_human_interval(dt, interval):
+def add_human_interval(dt: datetime, interval: str):
     match = re.match(r'(\d+)\s*(minutes|minute|hours|hour|days|day|weeks|week|months|month)', interval)
     if not match:
         raise ValueError(f"Invalid interval {interval}")

@@ -14,6 +14,10 @@ enable = true
 prefix_path = '/gui'
 storage_secret = '3VnIwL4yYreyayzHRMdALaGmiXzAkkkhaoyeE1J2yjpYaquu3qWsKIu6tlgPmHMl'
 
+[telegram_bot]
+enable = true
+api_token = '8298478680:AAHyyMFCmc_hLhUZyI5awjhMPkt8eQAXMQM'
+
 [database]
 mode='sqlite'
 

@@ -2,7 +2,7 @@ from nicegui import ui
 from typing import Callable
 
 from ...config import settings
-from .register_dialog import component as register_btn
+from .login_interface import component as login_btn
 
 
 def header_and_left_drawer(page_func: Callable, pages: list[dict]):
@@ -23,7 +23,7 @@ def header_and_left_drawer(page_func: Callable, pages: list[dict]):
         ui.label(settings.frontend.title).classes('text-h6 ml-2')
         ui.space()
 
-        register_btn()
+        login_btn()
 
         with ui.row().classes('items-center'):
             # ui.button('Dark', on_click=dark.enable)

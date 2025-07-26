@@ -20,6 +20,9 @@ logging.basicConfig(
     ]
 )
 
+from .bot.main import init as init_bot
+
+
 @asynccontextmanager
 async def lifetime_hook(app: FastAPI):
     try:
@@ -28,6 +31,8 @@ async def lifetime_hook(app: FastAPI):
     except TimeoutError:
         logging.error(f"Unable to connect to database!")
         exit(1)
+
+    await init_bot(app)
     
     logging.info("App started!")
 

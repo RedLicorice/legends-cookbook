@@ -86,13 +86,13 @@ class UsersService:
             model = UserModel.model_validate(orm_model)
             return model.model_dump()
     
-    def delete_binding(self, id: int):
+    def delete_user(self, id: int):
         with db_session() as db:
             orm_model = self.repo.delete(db, id)
             logging.info(f"Deleted user Id: {id}, Name: {orm_model.name}")
             return UserModel.model_validate(orm_model)
     
-    def delete_bindings(self, id_list: List[int]):
+    def delete_users(self, id_list: List[int]):
         with db_session() as db:
             result = {}
             for id in id_list:

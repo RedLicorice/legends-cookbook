@@ -6,6 +6,7 @@ from .base import Base
 if TYPE_CHECKING:
     from .recipe_review import RecipeReview
     from .recipe import Recipe
+    from .login_token import LoginToken
 
 class User(Base):
     __tablename__ = 'users'
@@ -14,6 +15,9 @@ class User(Base):
     # Telegram Info
     name = mapped_column(String, unique=True, index=True)
     telegram_user_id = mapped_column(String, unique=True, index=True)
+
+    # User's login tokens
+    login_tokens: Mapped[List["LoginToken"]] = relationship(back_populates="user")
     
     # User's recipes
     recipes: Mapped[List["Recipe"]] = relationship(back_populates="author")
